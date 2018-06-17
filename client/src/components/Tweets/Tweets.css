@@ -1,0 +1,53 @@
+.review {
+    background-color: #fff;
+    box-shadow: var(--shadow-light);
+    padding: 3rem;
+    margin-bottom: 3.5rem;
+    position: relative;
+    overflow: hidden;
+    font-size: 1.5rem;
+}
+    @media only screen and (max-width: 56.25em) {
+      .review {
+        padding: 3rem;
+        box-shadow: var(--shadow-light);
+        margin-bottom: 3.5rem;
+        font-size: 1.1rem; 
+      } 
+      .review__rating, select {
+        width:100%;
+        overflow-wrap: normal
+      }
+    }
+    .review__text {
+      margin-bottom: 2rem;
+      z-index: 10;
+      position: relative; }
+    .review__user {
+      display: flex;
+      align-items: center; }
+    .review__user-box {
+      margin-right: auto; }
+    .review__user-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: .4rem; }
+    .review__rating {
+      color: var(--color-primary);
+      font-weight: 300;
+    }
+    .review::before {
+      content: "\201C";
+      position: absolute;
+      top: -2.75rem;
+      left: -1rem;
+      line-height: 1;
+      font-size: 20rem;
+      color: var(--color-grey-light-2);
+      font-family: sans-serif;
+      z-index: 1; }
+
+    i{
+      padding-left:1.5rem;
+    }
