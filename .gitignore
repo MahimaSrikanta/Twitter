@@ -10,3 +10,7 @@ node_modules
 *.sublime-*
 .idea/
 *.DS_Store
+
+#Token 
+/server/config
+

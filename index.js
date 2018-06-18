@@ -1,7 +1,7 @@
 const express    = require('express');
 const path       = require('path');
 const bodyParser = require('body-parser');
-const tweets     = require('./routes/tweets');
+const tweets     = require('./server/routes/tweets');
 
 
 const app = express();

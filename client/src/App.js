@@ -16,24 +16,25 @@ class App extends Component {
     }
   }
   
-  getHashInput =(hashTag1, hashTag2, count) => {
-     axios.get(`${baseUrl}/linqia/tweets`,{
+  getHashInput = (hashTag1, hashTag2, count) => {
+    axios.get(`${baseUrl}/linqia/tweets`, {
       params: {
         hashTag1: hashTag1,
         hashTag2: hashTag2,
-        count : count,
-      }})
+        count: count,
+      }
+    })
       .then(data => {
         console.log(data.data)
-        if(data.data.tweets.statuses.length >0) {
-          this.setState({tweets: data.data.tweets.statuses});
+        if (data.data.tweets.statuses.length > 0) {
+          this.setState({ tweets: data.data.tweets.statuses });
           this.getSentiments();
-        }else{
+        } else {
           throw new Error("No Tweets To Display, Please check the hashtags or try chaining it with other hashtags")
         }
       })
       .catch(err => {
-        this.setState({error: err.message});
+        this.setState({ error: err.message });
       })
   }
   
@@ -42,11 +43,10 @@ class App extends Component {
       .then(data => {
         this.setState({
           sentiments: data.data,
-
         })
       })
       .catch(err => {
-        this.setState({err: err});
+        this.setState({ err: err });
       })
   }
 
@@ -78,8 +78,7 @@ class App extends Component {
                sentiments={this.state.sentiments}
               /> 
              </div>:
-             this.state.error}  
- 
+             this.state.error}   
         </div>
       </div>
     );
