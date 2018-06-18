@@ -1,5 +1,6 @@
 # Dependency directory
 node_modules
+client/node_modules
 
 # Editor and other tmp files
 *.swp
@@ -12,5 +13,7 @@ node_modules
 *.DS_Store
 
 #Token 
-/server/config
+server/config
 
+#build
+client/build
