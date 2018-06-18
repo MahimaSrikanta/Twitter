@@ -46,8 +46,9 @@ class TweetForm extends Component {
         <label>HashTag: </label>
         <input type="text"  name="hashTagValue1" placeholder="Enter #Hashtags separated by commas" value={hashTagValue1} onChange={(event) => this.handleHashTagInput(event)}/>
         <label>Tweets Limit: </label>
-        <input type="number" name="tweetCount" placeholder="Enter Limit" min="1" max="20" step="1" value= {tweetCount} onChange={(event) => this.handleHashTagInput(event)}/>
-        <button type="button" disabled={!this.state.formValid} value="Submit" className="btn" onClick={() => {this.props.getHashInput(hashTagValue1, hashTagValue2, tweetCount)}}>SUBMIT</button>
+        <input type="number" name="tweetCount" placeholder="Enter Limit" min="1" max="1000" step="1" value= {tweetCount} onChange={(event) => this.handleHashTagInput(event)}/>
+        <button type="button" disabled={!this.state.formValid} value="Submit" className="btn" onClick={() => {this.props.getHashInput(hashTagValue1, hashTagValue2, tweetCount)}}>SEARCH</button>
+        <button type="button" disabled={!this.state.formValid} value="Submit" className="btn" onClick={this.props.getSentiments}>SENTIMENT</button>
       </form>
     </div>
     );

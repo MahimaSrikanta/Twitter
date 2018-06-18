@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './TweetList.css';
 import Tweets from './Tweets';
 
+
 class TweetList extends Component {
   constructor(props){
     super(props);
@@ -41,7 +42,7 @@ class TweetList extends Component {
 
   render() {
     return(
-      <div className="description">
+      <div>
        <form className="sort-by">
         <label>Sort By:</label>
         <select value={this.state.value} onChange={this.handleChange}>

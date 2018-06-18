@@ -3,7 +3,7 @@
 }
 
 input[type=text], select{
-  width: 35%;
+  width: 25%;
   padding: 12px 20px;
   margin: 2% 2%;
   display: inline-block;
