@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './TweetList.css';
 import Tweets from './Tweets';
+import Sentiments from '../Sentiments/Sentiment';
 
 
 class TweetList extends Component {
@@ -41,6 +42,7 @@ class TweetList extends Component {
   }
 
   render() {
+    const {displaySentiments} = this.props;
     return(
       <div>
        <form className="sort-by">
@@ -50,8 +52,10 @@ class TweetList extends Component {
           <option value="favorite_count">Favourite</option>
           <option value="retweet_count">Comments</option>
         </select>
+        <button type="button" value="Submit" className="btn" onClick={this.props.getSentiments}>{displaySentiments ? 'TWEETS': 'SENTIMENTS'}</button>
        </form>
-      { this.state.tweetList.map(key => {
+       {displaySentiments ? <Sentiments sentiments={this.props.sentiments}/>:
+        this.state.tweetList.map(key => {
         return(
           <Tweets key={key.id}{...key}/>
         );

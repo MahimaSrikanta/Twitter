@@ -3,7 +3,6 @@ import axios from 'axios';
 import './App.css';
 import TweetForm from './components/TweetForm/TweetForm';
 import TweetList from './components/Tweets/TweetList';
-import Sentiment from './components/Sentiments/Sentiment';
 import {baseUrl} from './utilities/ServerRequest';
 
 class App extends Component {
@@ -13,7 +12,8 @@ class App extends Component {
     this.state={
       tweets:[],
       error:'',
-      sentiments:[]
+      sentiments:[],
+      displaySentiments:false,
     }
   }
   
@@ -34,9 +34,13 @@ class App extends Component {
   }
   
   getSentiments = () => {
+    console.log("hi",this.state.displaySentiments)
     axios.get(`${baseUrl}/linqia/sentiments`)
       .then(data => {
-        this.setState({sentiments: data.data})
+        this.setState({
+          sentiments: data.data,
+          displaySentiments:!this.state.displaySentiments,
+        })
       })
       .catch(err => console.log(err))
   }
@@ -57,14 +61,18 @@ class App extends Component {
         <div className="detail">
           <TweetForm
             getHashInput={this.getHashInput}
-            getSentiments={this.getSentiments}
+
           />
         </div>
         <div className="detail">
           {this.state.tweets.length > 0 ?
             <div className="description">
-              <Sentiment sentiments={this.state.sentiments}/>
-             <TweetList tweetList= {this.state.tweets}/> 
+             <TweetList 
+               tweetList= {this.state.tweets} 
+               getSentiments={this.getSentiments}
+               sentiments={this.state.sentiments}
+               displaySentiments={this.state.displaySentiments}
+              /> 
              </div>:
              this.state.error}  
  

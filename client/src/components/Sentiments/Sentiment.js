@@ -48,7 +48,7 @@ const Sentiments = (props) => {
     data.datasets[0].data = constructData(props.sentiments.data)
   return(
     <div>
-    <h2>Sentiments Analysis </h2>
+    <h4>Sentiments Analysis </h4>
     <Doughnut data={data} />
   </div>
   )
