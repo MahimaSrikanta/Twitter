@@ -13,7 +13,6 @@ class App extends Component {
       tweets:[],
       error:'',
       sentiments:[],
-      displaySentiments:false,
     }
   }
   
@@ -25,25 +24,33 @@ class App extends Component {
         count : count,
       }})
       .then(data => {
-       // console.log(data.data.tweets.statuses)
-        this.setState({tweets: data.data.tweets.statuses})
+        console.log(data.data)
+        if(data.data.tweets.statuses.length >0) {
+          this.setState({tweets: data.data.tweets.statuses});
+          this.getSentiments();
+        }else{
+          throw new Error("No Tweets To Display, Please check the hashtags or try chaining it with other hashtags")
+        }
       })
       .catch(err => {
-        this.setState({err: err})
+        this.setState({error: err.message});
       })
   }
   
   getSentiments = () => {
-    console.log("hi",this.state.displaySentiments)
     axios.get(`${baseUrl}/linqia/sentiments`)
       .then(data => {
         this.setState({
           sentiments: data.data,
-          displaySentiments:!this.state.displaySentiments,
+
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        this.setState({err: err});
+      })
   }
+
+
   
   render() {
     return (
@@ -61,7 +68,6 @@ class App extends Component {
         <div className="detail">
           <TweetForm
             getHashInput={this.getHashInput}
-
           />
         </div>
         <div className="detail">
@@ -69,9 +75,7 @@ class App extends Component {
             <div className="description">
              <TweetList 
                tweetList= {this.state.tweets} 
-               getSentiments={this.getSentiments}
                sentiments={this.state.sentiments}
-               displaySentiments={this.state.displaySentiments}
               /> 
              </div>:
              this.state.error}  

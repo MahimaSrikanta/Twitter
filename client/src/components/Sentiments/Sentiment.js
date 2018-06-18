@@ -30,6 +30,14 @@ const data = {
 	}]
 };
 
+const covertToPercentage = (array) => {
+  let total = array.reduce((acc,curr)=>{
+      return acc+curr;
+  },0);
+ return  array.map(data => {
+     return Math.round((100/total)*data);
+ });
+}
 const constructData = (array) => {
     const data =[0,0,0,0,0];
     array && array.map(key => {
@@ -42,13 +50,13 @@ const constructData = (array) => {
       }
       return 0;
     });
-    return data;
+    return covertToPercentage(data)
 }
 const Sentiments = (props) => {
     data.datasets[0].data = constructData(props.sentiments.data)
   return(
     <div>
-    <h4>Sentiments Analysis </h4>
+    <h4>Sentiments Analysis: values in %</h4>
     <Doughnut data={data} />
   </div>
   )

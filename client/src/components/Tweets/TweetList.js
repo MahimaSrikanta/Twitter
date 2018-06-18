@@ -3,13 +3,13 @@ import './TweetList.css';
 import Tweets from './Tweets';
 import Sentiments from '../Sentiments/Sentiment';
 
-
 class TweetList extends Component {
   constructor(props){
     super(props);
     this.state={
       value : '',
       tweetList:this.props.tweetList,
+      displaySentiments: false,
     }
   }
   
@@ -40,9 +40,13 @@ class TweetList extends Component {
     });
     
   }
+  
+  displaySentiments = () => {
+    this.setState({displaySentiments:!this.state.displaySentiments});
+  }
 
   render() {
-    const {displaySentiments} = this.props;
+    const {displaySentiments} = this.state;
     return(
       <div>
        <form className="sort-by">
@@ -50,9 +54,9 @@ class TweetList extends Component {
         <select value={this.state.value} onChange={this.handleChange}>
           <option name="" value="Select One">Select One</option>
           <option value="favorite_count">Favourite</option>
-          <option value="retweet_count">Comments</option>
+          <option value="retweet_count">ReTweets</option>
         </select>
-        <button type="button" value="Submit" className="btn" onClick={this.props.getSentiments}>{displaySentiments ? 'TWEETS': 'SENTIMENTS'}</button>
+        <button type="button" value="Submit" className="btn" onClick={this.displaySentiments}>{displaySentiments ? 'DISPLAY TWEETS': ' DISPLAY SENTIMENTS'}</button>
        </form>
        {displaySentiments ? <Sentiments sentiments={this.props.sentiments}/>:
         this.state.tweetList.map(key => {
