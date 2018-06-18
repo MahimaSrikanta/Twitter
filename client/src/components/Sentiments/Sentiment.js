@@ -32,7 +32,7 @@ const data = {
 
 const constructData = (array) => {
     const data =[0,0,0,0,0];
-    array && array.foreach(key => {
+    array && array.map(key => {
       if(key['code'] !== 400){
         data[0] += key['joy'];
         data[1] +=key['fear'];
@@ -40,6 +40,7 @@ const constructData = (array) => {
         data[3] +=key['disgust'];
         data[4] +=key['sadness'];
       }
+      return 0;
     });
     return data;
 }
